@@ -1,0 +1,4 @@
+Test App
+
+<?php phpinfo(); ?>
+
