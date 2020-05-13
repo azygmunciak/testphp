@@ -34,9 +34,7 @@ spec:
         deploymentconfig: testphp7
     spec:
       containers:
-        - image: >-
-            image-registry.openshift-image-registry.svc:5000/testphp7/testphp7
-        imagePullPolicy: Always
+      - image: testphp7:latest
         name: testphp7
         ports:
         - containerPort: 8080
@@ -44,13 +42,6 @@ spec:
         - containerPort: 8443
           protocol: TCP
         resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
   test: false
   triggers:
   - type: ConfigChange
