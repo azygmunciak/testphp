@@ -44,4 +44,4 @@ spec:
       lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:bbb9469731881762ab999ff8871378fc2852a11d7e5ad897e142bddde77f7b96
     type: ImageChange
 status:
-  lastVersion: 2
+  lastVersion: 3

@@ -1,4 +1,4 @@
-adrianozy.net - PHP Test App v1
+adrianozy.net - PHP Test App v2
 
 <?php phpinfo(); ?>
 
