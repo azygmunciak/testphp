@@ -4,3 +4,4 @@
 
 <?php phpinfo(); ?>
 </html>
+TEST
