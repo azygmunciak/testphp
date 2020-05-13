@@ -4,6 +4,7 @@ metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewApp
   creationTimestamp: null
+  generation: 2
   labels:
     app: testphp7
     app.kubernetes.io/component: testphp7
