@@ -1,0 +1,14 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  labels:
+    app: testphp7
+    app.kubernetes.io/component: testphp7
+    app.kubernetes.io/instance: testphp7
+  name: testphp7
+  selfLink: /apis/image.openshift.io/v1/namespaces/testphp7/imagestreams/testphp7
+spec:
+  lookupPolicy:
+    local: false
