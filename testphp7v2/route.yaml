@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  labels:
+    app: testphp7
+    app.kubernetes.io/component: testphp7
+    app.kubernetes.io/instance: testphp7
+  name: testphp7
+  namespace: testphp7
+spec:
+  host: testphp7.apps.test.example.com
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: testphp7
+    weight: 100
+  wildcardPolicy: None

@@ -1,0 +1,67 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"app":"testphp7","app.kubernetes.io/component":"testphp7","app.kubernetes.io/instance":"testphp7"},"name":"testphp7","namespace":"testphp7"},"spec":{"replicas":1,"selector":{"deploymentconfig":"testphp7"},"strategy":{"resources":{}},"template":{"metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"deploymentconfig":"testphp7"}},"spec":{"containers":[{"image":"testphp7:latest","name":"testphp7","ports":[{"containerPort":8080,"protocol":"TCP"},{"containerPort":8443,"protocol":"TCP"}],"resources":{}}]}},"test":false,"triggers":[{"type":"ConfigChange"},{"imageChangeParams":{"automatic":true,"containerNames":["testphp7"],"from":{"kind":"ImageStreamTag","name":"testphp7:latest"}},"type":"ImageChange"}]},"status":{"availableReplicas":0,"latestVersion":0,"observedGeneration":0,"replicas":0,"unavailableReplicas":0,"updatedReplicas":0}}
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: null
+  generation: 1
+  labels:
+    app: testphp7
+    app.kubernetes.io/component: testphp7
+    app.kubernetes.io/instance: testphp7
+  name: testphp7
+  selfLink: /apis/apps.openshift.io/v1/namespaces/testphp7/deploymentconfigs/testphp7
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deploymentconfig: testphp7
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        deploymentconfig: testphp7
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/testphp7/testphp7@sha256:10c2af7983dad6d3bd6f22e5c1a4cb5fa2ee0372ab16ea524922446b0cdc03f6
+        imagePullPolicy: Always
+        name: testphp7
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - testphp7
+      from:
+        kind: ImageStreamTag
+        name: testphp7:latest
+        namespace: testphp7
+    type: ImageChange

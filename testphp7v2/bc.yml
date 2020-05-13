@@ -1,0 +1,47 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"app":"testphp7","app.kubernetes.io/component":"testphp7","app.kubernetes.io/instance":"testphp7"},"name":"testphp7","namespace":"testphp7"},"spec":{"nodeSelector":null,"output":{"to":{"kind":"ImageStreamTag","name":"testphp7:latest"}},"postCommit":{},"resources":{},"source":{"git":{"uri":"https://github.com/azygmunciak/testphp.git"},"type":"Git"},"strategy":{"sourceStrategy":{"from":{"kind":"ImageStreamTag","name":"php:7.3","namespace":"openshift"}},"type":"Source"},"triggers":[{"github":{"secret":"KJGiMFdo-EMOnpD_5cnZ"},"type":"GitHub"},{"generic":{"secret":"XA1N8ivqOJtvSGtUjOV3"},"type":"Generic"},{"type":"ConfigChange"},{"imageChange":{},"type":"ImageChange"}]},"status":{"lastVersion":0}}
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: null
+  labels:
+    app: testphp7
+    app.kubernetes.io/component: testphp7
+    app.kubernetes.io/instance: testphp7
+  name: testphp7
+  selfLink: /apis/build.openshift.io/v1/namespaces/testphp7/buildconfigs/testphp7
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: testphp7:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/azygmunciak/testphp.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: php:7.3
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: KJGiMFdo-EMOnpD_5cnZ
+    type: GitHub
+  - generic:
+      secret: XA1N8ivqOJtvSGtUjOV3
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:bbb9469731881762ab999ff8871378fc2852a11d7e5ad897e142bddde77f7b96
+    type: ImageChange
