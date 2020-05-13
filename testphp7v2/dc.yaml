@@ -34,7 +34,7 @@ spec:
         deploymentconfig: testphp7
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/testphp7:latest
+      - image: image-registry.openshift-image-registry.svc:5000/testphp7/testphp7:latest
         name: testphp7
         ports:
         - containerPort: 8080
