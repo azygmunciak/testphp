@@ -2,11 +2,8 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"app":"testphp7","app.kubernetes.io/component":"testphp7","app.kubernetes.io/instance":"testphp7"},"name":"testphp7","namespace":"testphp7"},"spec":{"replicas":1,"selector":{"deploymentconfig":"testphp7"},"strategy":{"resources":{}},"template":{"metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"deploymentconfig":"testphp7"}},"spec":{"containers":[{"image":"testphp7:latest","name":"testphp7","ports":[{"containerPort":8080,"protocol":"TCP"},{"containerPort":8443,"protocol":"TCP"}],"resources":{}}]}},"test":false,"triggers":[{"type":"ConfigChange"},{"imageChangeParams":{"automatic":true,"containerNames":["testphp7"],"from":{"kind":"ImageStreamTag","name":"testphp7:latest"}},"type":"ImageChange"}]},"status":{"availableReplicas":0,"latestVersion":0,"observedGeneration":0,"replicas":0,"unavailableReplicas":0,"updatedReplicas":0}}
     openshift.io/generated-by: OpenShiftNewApp
   creationTimestamp: null
-  generation: 1
   labels:
     app: testphp7
     app.kubernetes.io/component: testphp7
