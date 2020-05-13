@@ -34,7 +34,7 @@ spec:
         deploymentconfig: testphp7
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/testphp7/testphp7@sha256:10c2af7983dad6d3bd6f22e5c1a4cb5fa2ee0372ab16ea524922446b0cdc03f6
+      - image: null
         imagePullPolicy: Always
         name: testphp7
         ports:
