@@ -2,8 +2,6 @@ apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
   annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"image.openshift.io/v1","kind":"ImageStream","metadata":{"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"},"creationTimestamp":null,"labels":{"app":"testphp7","app.kubernetes.io/component":"testphp7","app.kubernetes.io/instance":"testphp7"},"name":"testphp7","namespace":"testphp7"},"spec":{"lookupPolicy":{"local":false}},"status":{"dockerImageRepository":""}}
     openshift.io/generated-by: OpenShiftNewApp
   labels:
     app: testphp7
