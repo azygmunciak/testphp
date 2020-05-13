@@ -43,14 +43,3 @@ spec:
           protocol: TCP
         resources: {}
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - testphp7
-      from:
-        kind: ImageStreamTag
-        name: testphp7:latest
-        namespace: testphp7
-    type: ImageChange
