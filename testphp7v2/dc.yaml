@@ -12,7 +12,7 @@ metadata:
   name: testphp7
   selfLink: /apis/apps.openshift.io/v1/namespaces/testphp7/deploymentconfigs/testphp7
 spec:
-  replicas: 4
+  replicas: 3
   revisionHistoryLimit: 10
   selector:
     deploymentconfig: testphp7
