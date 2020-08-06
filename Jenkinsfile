@@ -77,9 +77,9 @@ pipeline {
       }    
     }
     stage ('Approve to deploy') {
-      when {
-        branch 'master'
-      }
+      //when {
+      //  branch 'master'
+      //}
       options {
         timeout(time: 12, unit: 'HOURS')
       }      
@@ -96,9 +96,9 @@ pipeline {
       }  
     }
     stage('Deploy APP in PROD') {
-      when {
-        branch 'master'
-      }
+      //when {
+      //  branch 'master'
+      //}
       steps {        
         script {       
           openshift.withCluster() {
