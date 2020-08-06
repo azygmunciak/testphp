@@ -84,7 +84,7 @@ pipeline {
         timeout(time: 12, unit: 'HOURS')
       }      
       steps {
-        input message "Deploy changes to PROD?"
+        input message: "Deploy changes to PROD?"
       }
       post {
         success {
