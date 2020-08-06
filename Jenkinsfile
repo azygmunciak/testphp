@@ -1,11 +1,17 @@
 pipeline {
   agent any
+  environment {
+    DEV_ENVIRONMENT = 'adrian-env-dev'
+    PROD_ENVIRONMENT = 'adrian-env-prod'
+    DEV_APP_NAME = 'testphp'
+    PROD_APP_NAME = 'myappphp'
+  }
   stages{
     stage('Info-DEV') {
       steps {    
         script {       
           openshift.withCluster() {
-            openshift.withProject("adrian-env-dev") {
+            openshift.withProject("$DEV_ENVIRONMENT") {
               echo "Using project ${openshift.project()} in cluster ${openshift.cluster()}"
             }
           }
@@ -16,8 +22,8 @@ pipeline {
      steps {    
         script {  
          openshift.withCluster() {
-            openshift.withProject("adrian-env-dev") {
-              openshift.selector( 'all', [ app:'testphp' ] ).delete()
+            openshift.withProject("$DEV_ENVIRONMENT") {
+              openshift.selector( 'all', [ app:'$DEV_APP_NAME' ] ).delete()
             }     
           }
         }    
@@ -27,7 +33,7 @@ pipeline {
       steps {    
         script {       
           openshift.withCluster() {
-            openshift.withProject("adrian-env-dev") {
+            openshift.withProject("$DEV_ENVIRONMENT") {
               def created = openshift.newApp( 'php~https://github.com/azygmunciak/testphp.git' )
               echo "new-app created ${created.count()} objects named: ${created.names()}"
               created.describe()
@@ -47,7 +53,7 @@ pipeline {
       steps {       
         script {       
           openshift.withCluster() {
-            openshift.withProject("adrian-env-prod") {
+            openshift.withProject("$PROD_ENVIRONMENT") {
               echo "Using project ${openshift.project()} in cluster ${openshift.cluster()}"
             }
           }
@@ -58,8 +64,8 @@ pipeline {
       steps {       
         script {       
           openshift.withCluster() {
-            openshift.withProject("adrian-env-prod") {
-              openshift.selector("bc", "myphpapp").startBuild("--wait=true")
+            openshift.withProject("$PROD_ENVIRONMENT") {
+              openshift.selector("bc", "$PROD_APP_NAME").startBuild("--wait=true")
             }
           }
         }  
@@ -69,8 +75,8 @@ pipeline {
       steps {      
         script {       
           openshift.withCluster() {
-           openshift.withProject("adrian-env-prod") {
-             openshift.tag("myphpapp:latest", "myphpapp:${BUILD_NUMBER}")
+           openshift.withProject("$PROD_ENVIRONMENT") {
+             openshift.tag("$PROD_APP_NAME:latest", "$PROD_APP_NAME:${BUILD_NUMBER}")
            }
           }
         }       
@@ -102,8 +108,8 @@ pipeline {
       steps {        
         script {       
           openshift.withCluster() {
-            openshift.withProject("adrian-env-prod") {
-              openshift.selector("dc", "myphpapp").rollout().latest();
+            openshift.withProject("$PROD_ENVIRONMENT") {
+              openshift.selector("dc", "$PROD_APP_NAME").rollout().latest();
             }
           }
         }
