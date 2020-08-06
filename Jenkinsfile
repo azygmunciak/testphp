@@ -4,7 +4,7 @@ pipeline {
     DEV_ENVIRONMENT = 'adrian-env-dev'
     PROD_ENVIRONMENT = 'adrian-env-prod'
     DEV_APP_NAME = 'testphp'
-    PROD_APP_NAME = 'myappphp'
+    PROD_APP_NAME = 'myphpapp'
   }
   stages{
     stage('Info-DEV') {
