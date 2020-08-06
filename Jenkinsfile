@@ -76,7 +76,28 @@ pipeline {
         }       
       }    
     }
+    stage ('Approve to deploy') {
+      when {
+        branch 'master'
+      }
+      options {
+        timeout(time: 12, unit: 'HOURS')
+      }      
+      steps {
+        input message "Deploy changes to PROD?"
+      }
+      post {
+        success {
+          echo "Deployment approved."
+        }
+        failure {
+          echo "Deployment rejected!"
+        }      
+    }
     stage('Deploy APP in PROD') {
+      when {
+        branch 'master'
+      }
       steps {        
         script {       
           openshift.withCluster() {
