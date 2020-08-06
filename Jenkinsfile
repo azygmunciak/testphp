@@ -92,7 +92,8 @@ pipeline {
         }
         failure {
           echo "Deployment rejected!"
-        }      
+        }    
+      }  
     }
     stage('Deploy APP in PROD') {
       when {
