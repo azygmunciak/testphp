@@ -52,7 +52,10 @@ pipeline {
       }    
     }
     stage('Test-DEV') {
-     steps {    
+      options {
+        timeout(time: 3, unit: 'MINUTES')
+      }        
+      steps {    
         sh(script: '''
           TEST=0
           while [[ $TEST -ne 1 ]]; do
@@ -108,7 +111,7 @@ pipeline {
       //  branch 'master'
       //}
       options {
-        timeout(time: 1, unit: 'HOURS')
+        timeout(time: 4, unit: 'HOURS')
       }      
       steps {
         input message: "Deploy changes to PROD?"
@@ -137,7 +140,10 @@ pipeline {
       }
     }
     stage('Test-PROD') {
-     steps {    
+      options {
+        timeout(time: 5, unit: 'MINUTES')
+      }        
+      steps {    
         sh(script: '''
           TEST=0
           while [[ $TEST -ne 1 ]]; do
