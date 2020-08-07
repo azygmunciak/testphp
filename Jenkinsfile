@@ -87,7 +87,7 @@ pipeline {
       //  branch 'master'
       //}
       options {
-        timeout(time: 12, unit: 'HOURS')
+        timeout(time: 1, unit: 'HOURS')
       }      
       steps {
         input message: "Deploy changes to PROD?"
