@@ -1,5 +1,5 @@
 <html>
-<h1>My PHP App v4</h1>
+<h1>My PHP App v5</h1>
 <h2>Instance: <?php echo gethostname(); ?></h2>
 <?php phpinfo(); ?>
 </html>
