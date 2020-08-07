@@ -44,11 +44,32 @@ pipeline {
               echo "Logs executed: ${result.actions[0].cmd}"
               def logsString = result.actions[0].out
               def logsErr = result.actions[0].err  
+
+              openshift.expose("svc/testphp","--hostname=bookinfo-web-bookinfo.apps.test.oc.io")
             }
           }
         }    
       }    
     }
+    stage('Test-DEV') {
+     steps {    
+        sh(script: '''
+          TEST=0
+          while [[ $TEST -ne 1 ]]; do
+            TEST=$(curl http://bookinfo-web-bookinfo.apps.test.oc.io/health.html 2> /dev/null|grep alive|wc -l)
+            sleep 2
+          done
+          ''')    
+      }  
+      post {
+        success {
+          echo "APP tested successfully"
+        }
+        failure {
+          echo "APP test failed!"
+        }
+      }        
+    }    
     stage('Info-PROD') {
       steps {       
         script {       
@@ -114,15 +135,26 @@ pipeline {
           }
         }
       }
+    }
+    stage('Test-PROD') {
+     steps {    
+        sh(script: '''
+          TEST=0
+          while [[ $TEST -ne 1 ]]; do
+            TEST=$(curl http://robot-shop-web-robot-shop.apps.test.oc.io/health.html 2> /dev/null|grep alive|wc -l)
+            sleep 2
+          done
+          ''')    
+      }  
       post {
         success {
-          echo "APP Updated successfully"
+          echo "APP updated successfully"
         }
         failure {
           echo "APP Update failed!"
         }
-      }
-    }
+      }      
+    }       
   }
 }
 
