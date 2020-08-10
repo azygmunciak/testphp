@@ -116,9 +116,11 @@ pipeline {
         timeout(time: 4, unit: 'HOURS')
       }      
       steps {
-        openshift.withCluster() {
-          openshift.withProject("$PROD_ENVIRONMENT") {
-            slackSend channel: 'my-test-channel', message: "Waiting for approval: $PROD_APP_NAME using project ${openshift.project()} in cluster ${openshift.cluster()}"
+        script {        
+          openshift.withCluster() {
+            openshift.withProject("$PROD_ENVIRONMENT") {
+              slackSend channel: 'my-test-channel', message: "Waiting for approval: $PROD_APP_NAME using project ${openshift.project()} in cluster ${openshift.cluster()}"
+            }
           }
         }
         input message: "Deploy changes to PROD?"
