@@ -161,17 +161,22 @@ pipeline {
       }  
       post {
         success {
-          echo "APP updated successfully"
+          script { 
+            echo "APP updated successfully"
             openshift.withCluster() {
               openshift.withProject("$PROD_ENVIRONMENT") {  
                 slackSend channel: 'my-test-channel', message: "Application $PROD_APP_NAME in ${openshift.project()} project has been updated successfully!"
               }
             }
+          }
         }
         failure {
-          openshift.withCluster() {
-            openshift.withProject("$PROD_ENVIRONMENT") {            
-              slackSend channel: 'my-test-channel', message: "DEPLOYMENT FAILED!!! Application $PROD_APP_NAME in ${openshift.project()} project has been updated unsuccessfully!!!"
+          script {           
+            echo "APP update failed"
+            openshift.withCluster() {              
+              openshift.withProject("$PROD_ENVIRONMENT") {            
+                slackSend channel: 'my-test-channel', message: "DEPLOYMENT FAILED!!! Application $PROD_APP_NAME in ${openshift.project()} project has been updated unsuccessfully!!!"
+              }
             }
           }
         }
