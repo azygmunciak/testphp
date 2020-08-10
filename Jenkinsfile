@@ -10,6 +10,7 @@ pipeline {
     stage('Info-DEV') {
       steps {    
         script {       
+          slackSend channel: 'my-test-channel', message: "Starting new build of $DEV_APP_NAME using project ${openshift.project()} in cluster ${openshift.cluster()}"
           openshift.withCluster() {
             openshift.withProject("$DEV_ENVIRONMENT") {
               echo "Using project ${openshift.project()} in cluster ${openshift.cluster()}"
@@ -75,7 +76,8 @@ pipeline {
     }    
     stage('Info-PROD') {
       steps {       
-        script {       
+        script {    
+          slackSend channel: 'my-test-channel', message: "Starting new build of $PROD_APP_NAME using project ${openshift.project()} in cluster ${openshift.cluster()}"
           openshift.withCluster() {
             openshift.withProject("$PROD_ENVIRONMENT") {
               echo "Using project ${openshift.project()} in cluster ${openshift.cluster()}"
@@ -114,6 +116,7 @@ pipeline {
         timeout(time: 4, unit: 'HOURS')
       }      
       steps {
+        slackSend channel: 'my-test-channel', message: "Waiting for approval: $PROD_APP_NAME using project ${openshift.project()} in cluster ${openshift.cluster()}"
         input message: "Deploy changes to PROD?"
       }
       post {
@@ -155,9 +158,12 @@ pipeline {
       post {
         success {
           echo "APP updated successfully"
+          slackSend channel: 'my-test-channel', message: "Application $PROD_APP_NAME in ${openshift.project()} project has been updated successfully!"
+
         }
         failure {
-          echo "APP Update failed!"
+          slackSend channel: 'my-test-channel', message: "DEPLOYMENT FAILED!!! Application $PROD_APP_NAME in ${openshift.project()} project has been updated unsuccessfully!!!"
+
         }
       }      
     }       
