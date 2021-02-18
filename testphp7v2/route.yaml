@@ -10,7 +10,7 @@ metadata:
   name: testphp7
   namespace: testphp7
 spec:
-  host: testphp7.apps.test.example.com
+#  host: testphp7.apps.test.example.com
   port:
     targetPort: 8080-tcp
   to:
