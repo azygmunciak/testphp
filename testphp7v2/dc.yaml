@@ -1,36 +1,18 @@
-apiVersion: apps.openshift.io/v1
+apiVersion: v1
 kind: DeploymentConfig
 metadata:
-  annotations:
-    openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: null
   labels:
     app: testphp7
-    app.kubernetes.io/component: testphp7
-    app.kubernetes.io/instance: testphp7
-    version: 1
   name: testphp7
-  selfLink: /apis/apps.openshift.io/v1/namespaces/testphp7/deploymentconfigs/testphp7
 spec:
   replicas: 3
   revisionHistoryLimit: 10
   selector:
     deploymentconfig: testphp7
   strategy:
-    activeDeadlineSeconds: 21600
-    resources: {}
-    rollingParams:
-      intervalSeconds: 1
-      maxSurge: 25%
-      maxUnavailable: 25%
-      timeoutSeconds: 600
-      updatePeriodSeconds: 1
     type: Rolling
   template:
     metadata:
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
-      creationTimestamp: null
       labels:
         deploymentconfig: testphp7
     spec:
