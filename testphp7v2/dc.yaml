@@ -4,6 +4,7 @@ metadata:
   labels:
     app: testphp7
   name: testphp7
+  namespace: testphp7
 spec:
   replicas: 3
   revisionHistoryLimit: 10
